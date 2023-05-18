@@ -3,12 +3,14 @@ import {User} from "../models/user";
 import {UserEntity} from "../persistence/user.entity";
 import {AppDataSource} from "../persistence";
 import {Repository} from "typeorm";
+import {Service} from "typedi";
 
-export class DbUsersRepository implements UsersRepository {
+@Service()
+export class TypeormUsersRepository implements UsersRepository {
 
     repository: Repository<UserEntity> = AppDataSource.getRepository(UserEntity);
 
-    async createUser(user: User) {
+    async createUser(user: User): Promise<void> {
         const entity: UserEntity = new UserEntity();
         entity.name = user.name;
         entity.email = user.email;
