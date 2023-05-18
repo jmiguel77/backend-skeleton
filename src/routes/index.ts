@@ -1,7 +1,9 @@
-import express from "express";
-import {usersRouter} from "./users.routes";
-const router = express.Router();
+import "reflect-metadata";
+import {Router} from "express";
+import usersRouter from "./users.routes";
 
-router.use('/users', usersRouter);
+const AppRouter = Router();
 
-export {router};
+AppRouter.use('/users', usersRouter);
+
+export default AppRouter;

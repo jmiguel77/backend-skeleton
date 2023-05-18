@@ -5,8 +5,8 @@ import {AppDataSource} from "../persistence";
 import {Repository} from "typeorm";
 import {Service} from "typedi";
 
-@Service()
-export class TypeormUsersRepository implements UsersRepository {
+@Service({global:true})
+export class DbUsersRepository implements UsersRepository {
 
     repository: Repository<UserEntity> = AppDataSource.getRepository(UserEntity);
 
